@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Pixelify+Sans:regular&display=swap");
+
 * {
 	padding: 0px;
 	margin: 0px;
@@ -7,6 +9,10 @@
 *:before,
 *:after {
 	box-sizing: border-box;
+}
+::placeholder {
+	font-family: 'Pixelify Sans';
+	font-size: 3rem;
 }
 :focus,
 :active {
@@ -24,7 +30,7 @@ body {
 body {
 	line-height: 1;
 	font-size: 16;
-	//text-rendering: optimizeLegibility;
+	font-family: Pixelify Sans;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
