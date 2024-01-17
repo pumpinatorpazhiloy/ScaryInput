@@ -1,61 +1,93 @@
 import { useState } from 'react';
-import { useSpring, animated } from '@react-spring/web'
 import { TypeAnimation } from 'react-type-animation';
 
 import '../../style/Input.scss';
 
-//TYPING ANIMATION 
 const TypingAnimation = () => {
 	return (
 	  <TypeAnimation
-		 sequence={[
-			'WAITING...',
-			4000
-		 ]}
+		 sequence={['WAITING...', 2000, 'WAITING', 500]}
 		 wrapper="span"
 		 speed={1}
 		 style={{ fontSize: '2.5em' }}
-		 repeat={0}
+		 repeat={Infinity}
 	  />
 	);
 };
 
-const FormMain = ({value, setValue, scare}) => {
-
-	const fade = useSpring({from: {opacity: 0}, opacity: 1, config: { duration: 3000 }})
-
+const DanGlek = () => {
 	return (
-		<animated.div style={fade} className="form__row">
-			<TypingAnimation/>
-			<form className="form">
-				<input 
-					className="input__main" 
-					type="text"
-					placeholder="TYPE HERE"
-					value={value}
-					onChange={e => setValue(e.target.value)}/>
-				<button onClick={(e) => scare(true)(e)} className="clickMe">
-					<span className="btn_enter">ENTER</span>
-				</button>
-			</form>
-		</animated.div>
+		<div style={{fontSize: '12rem'}}>
+			DAN BAYADERA<br/>PIDORS
+		</div>
 	);
 }
 
 const Input = ({activeChange}) => {
+
 	const [ value, setValue ] = useState('');
+	const [ dan, setDan ] = useState(false)
+	const [ defaultMessage, setDefaultMessage ] = useState(false);
+	const [ supportUkraine, setSupportUkraine] = useState(false);
+	// const [ disable, setDisable ] = useState(false);
+
+	const DefaultCase = () => {
+		return(
+			<>
+				<div>HELLO, MAN</div>
+			</>
+		);
+	}
+
+	const SupportUkraine = () => {
+		return(
+			<>
+				<a href="https://send.monobank.ua/jar/dzBdJ3737">SUPPORT UKRAINE</a>
+			</>
+		);
+	}
 
 	const scare = (value) => e => {
 		e.preventDefault();
-		if(value === 'Russia') {
-			setTimeout(() => activeChange(true), 1000)
-			console.log(1)
+		// setDisable(true)
+		switch(value) {
+			case 'Russia':
+				setTimeout(() => activeChange(true), 1000);
+				break;
+			case 'Dan':
+				setTimeout(() => setDan(true), 1000);
+				break;
+			case 'Бавовна':
+				setTimeout(() => setSupportUkraine(true), 1000);
+				break;
+			default:
+				setDefaultMessage(true);
+				break;
 		}
 	}
 	
 	return (
+		///ДОДЕЛАТЬ ЛОГИКУ
 		<>
-			<FormMain value={value} setValue={setValue} scare={scare}/>
+			{/* {defaultMessage ? <DefaultCase/> : null} */}
+			{supportUkraine ? <SupportUkraine/> : null}
+			{dan ? <DanGlek/> || <DefaultCase/> : null}
+			<div className="form__row">
+				<TypingAnimation/>
+
+				<form className="form">
+					<input 
+						className="input__main" 
+						type="text"
+						placeholder="TYPE HERE"
+						value={value}
+						onChange={e => setValue(e.target.value)}/>
+					<button onClick={(e) => scare(value)(e)} 
+							  className="clickMe">
+							<span className="btn_enter">ENTER</span>
+					</button>
+				</form>
+			</div>
 		</>
 	)
 }
