@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import useProcess from '../hooks/Hooks.jsx';
 import { TypeAnimation } from 'react-type-animation';
+import setContent from '../stateMachine/StateMachine.jsx'
 
 import '../../style/Input.scss';
 
@@ -15,66 +17,23 @@ const TypingAnimation = () => {
 	);
 };
 
-const DanGlek = () => {
-	return (
-		<div style={{fontSize: '12rem'}}>
-			DAN BAYADERA<br/>PIDORS
-		</div>
+const renderContent = () => {
+	return(
+		<>
+			{setContent(process)}
+		</>
 	);
-}
+};
 
-const Input = ({activeChange}) => {
-
+const Input = () => {
 	const [ value, setValue ] = useState('');
-	const [ dan, setDan ] = useState(false)
-	const [ defaultMessage, setDefaultMessage ] = useState(false);
-	const [ supportUkraine, setSupportUkraine] = useState(false);
-	// const [ disable, setDisable ] = useState(false);
 
-	const DefaultCase = () => {
-		return(
-			<>
-				<div>HELLO, MAN</div>
-			</>
-		);
-	}
-
-	const SupportUkraine = () => {
-		return(
-			<>
-				<a href="https://send.monobank.ua/jar/dzBdJ3737">SUPPORT UKRAINE</a>
-			</>
-		);
-	}
-
-	const scare = (value) => e => {
-		e.preventDefault();
-		// setDisable(true)
-		switch(value) {
-			case 'Russia':
-				setTimeout(() => activeChange(true), 1000);
-				break;
-			case 'Dan':
-				setTimeout(() => setDan(true), 1000);
-				break;
-			case 'Бавовна':
-				setTimeout(() => setSupportUkraine(true), 1000);
-				break;
-			default:
-				setDefaultMessage(true);
-				break;
-		}
-	}
-	
 	return (
 		///ДОДЕЛАТЬ ЛОГИКУ
 		<>
-			{/* {defaultMessage ? <DefaultCase/> : null} */}
-			{supportUkraine ? <SupportUkraine/> : null}
-			{dan ? <DanGlek/> || <DefaultCase/> : null}
+			{renderContent}
 			<div className="form__row">
 				<TypingAnimation/>
-
 				<form className="form">
 					<input 
 						className="input__main" 
@@ -82,7 +41,7 @@ const Input = ({activeChange}) => {
 						placeholder="TYPE HERE"
 						value={value}
 						onChange={e => setValue(e.target.value)}/>
-					<button onClick={(e) => scare(value)(e)} 
+					<button onClick={() => setContent(value)} 
 							  className="clickMe">
 							<span className="btn_enter">ENTER</span>
 					</button>
