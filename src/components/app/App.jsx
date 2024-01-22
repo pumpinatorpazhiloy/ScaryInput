@@ -6,8 +6,7 @@ import { useSpring, animated } from '@react-spring/web'
 
 import '../../style/App.scss';
 
-function App() {
-	const [ active, setActive ] = useState(false);
+function App() {;
 
 	const fade = useSpring({from: {opacity: 0}, opacity: 1, config: { duration: 3000 }})
 
@@ -26,7 +25,7 @@ function App() {
 		<Tooltip id="my-tooltip"/>
 		<div className="input">
 			<div className="container">
-				{active ? <ScaryModal/> : <Input activeChange={setActive}/>}
+				<Input/>
 			</div>
 		</div>
 	</animated.div>

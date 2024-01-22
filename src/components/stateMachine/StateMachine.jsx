@@ -1,14 +1,12 @@
 // import { createMachine } from "xstate";
-import useProcess from '../hooks/Hooks.jsx'
 import ScaryModal from '../modals/Modal.jsx'
 import { DanGlek } from '../pazles/pazles.jsx';
 import { SupportUkraine } from '../pazles/pazles.jsx';
-import { DefaultCase } from '../pazles/pazles.jsx';
 
 const setContent = (process) => {
 	switch (process) {
-		case 'loading':
-			return <DefaultCase/>
+		case 'idle':
+			return
 		case 'dan':
 			return <DanGlek/>;
 		case 'bavovna':

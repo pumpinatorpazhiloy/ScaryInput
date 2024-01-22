@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 const useProcess = () => {
-	const [process, setProcess] = useState('loading');
-
+	const [process, setProcess] = useState('idle');
 	return {process, setProcess};
 }
 

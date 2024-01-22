@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useProcess from '../hooks/Hooks.jsx';
 import { TypeAnimation } from 'react-type-animation';
-import setContent from '../stateMachine/StateMachine.jsx'
+import setContent from '../stateMachine/StateMachine.jsx';
 
 import '../../style/Input.scss';
 
@@ -17,21 +17,13 @@ const TypingAnimation = () => {
 	);
 };
 
-const renderContent = () => {
-	return(
-		<>
-			{setContent(process)}
-		</>
-	);
-};
-
-const Input = () => {
+export const Input = () => {
 	const [ value, setValue ] = useState('');
+	const { process, setProcess } = useProcess();
 
 	return (
-		///ДОДЕЛАТЬ ЛОГИКУ
 		<>
-			{renderContent}
+			{setContent(process)}
 			<div className="form__row">
 				<TypingAnimation/>
 				<form className="form">
@@ -41,14 +33,17 @@ const Input = () => {
 						placeholder="TYPE HERE"
 						value={value}
 						onChange={e => setValue(e.target.value)}/>
-					<button onClick={() => setContent(value)} 
-							  className="clickMe">
-							<span className="btn_enter">ENTER</span>
+					<button onClick={e => {
+						e.preventDefault();
+						setProcess(value)
+					}} 
+					className="clickMe">
+						<span className="btn_enter">ENTER</span>
 					</button>
 				</form>
 			</div>
 		</>
-	)
+	);
 }
 
 export default Input;
