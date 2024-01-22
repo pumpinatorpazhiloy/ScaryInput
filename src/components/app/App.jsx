@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import Input from '../input/Input.jsx';
-import ScaryModal from '../modals/Modal.jsx';
 import { Tooltip } from 'react-tooltip'
 import { useSpring, animated } from '@react-spring/web'
 
@@ -11,7 +9,7 @@ function App() {;
 	const fade = useSpring({from: {opacity: 0}, opacity: 1, config: { duration: 3000 }})
 
 	return (
-	<animated.div style={fade}>
+	<animated.div className="main__block" style={fade}>
 		<div className='tooltip'>
 			<div className='container'>
 				<a 
