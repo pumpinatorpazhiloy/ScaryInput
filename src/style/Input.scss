@@ -55,7 +55,10 @@ form {
 		background-color: #202020;
 	}
 	&:disabled {
-		background-color: red;
+		background-color: #202020;
+		span {
+			animation: none;
+		}
 	}
 }
 
