@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import useProcess from '../hooks/Hooks.jsx';
+import useProcess from '../hooks/Hooks';
 import { TypeAnimation } from 'react-type-animation';
-import setContent from '../stateMachine/StateMachine.jsx';
-import { schema } from '../validations/scaryInputValidation.jsx';
-import { NotValid } from '../pazles/pazles.jsx';
+import setContent from '../stateMachine/StateMachine';
+import { schema } from '../validations/scaryInputValidation';
+import { NotValid } from '../pazles/pazles';
 
 import '../../style/Input.scss';
 
@@ -24,7 +24,7 @@ const WaitingAnimation = () => {
 	return (
 	  <TypeAnimation
 		 sequence={['WAITING...', 2000, 'WAITING', 500]}
-		 wrapper="label"
+		 wrapper="span"
 		 speed={1}
 		 style={{ fontSize: '2.5em', color: '#fff' }}
 		 repeat={Infinity}
@@ -36,7 +36,7 @@ const LoadingAnimation = () => {
 	return (
 	  <TypeAnimation
 		 sequence={['LOADING...', 2000, 'LOADING', 500]}
-		 wrapper="label"
+		 wrapper="span"
 		 speed={1}
 		 style={{ fontSize: '2.5em', color: '#fff' }}
 		 repeat={Infinity}

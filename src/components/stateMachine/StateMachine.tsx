@@ -1,9 +1,9 @@
-import ScaryModal from '../modals/Modal.jsx'
-import { DanGlek } from '../pazles/pazles.jsx';
-import { SupportUkraine } from '../pazles/pazles.jsx';
+import ScaryModal from '../modals/Modal'
+import { DanGlek } from '../pazles/pazles';
+import { SupportUkraine } from '../pazles/pazles';
 // import { Zaza } from '../pazles/pazles.jsx';
 
-const setContent = (process) => {
+const setContent = (process: string) => {
 	switch (process) {
 		case 'idle':
 			return

@@ -1,4 +1,4 @@
-import Input from '../input/Input.jsx';
+import Input from '../input/Input';
 import { Tooltip } from 'react-tooltip'
 import { useSpring, animated } from '@react-spring/web'
 
